@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>For Chloe 💘</title>
+
+<style>
+  :root {
+    --pink-main: #f6c1d1;      
+    --pink-accent: #ff4d8d;
+  }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  background-color: #f6c1d1; 
+  background-image:
+    url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M60 95s-35-22-35-45a20 20 0 0135-13 20 20 0 0135 13c0 23-35 45-35 45z' fill='white' fill-opacity='0.15'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 120px 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+ img.gift {
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+    border-radius: 14px;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+    margin-bottom: 20px;
+  }
+
+
+  .container {
+    max-width: 500px;
+    position: relative;
+  }
+
+  img.cat {
+    width: 250px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+
+  .hint {
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+  }
+
+  .buttons {
+    position: relative;
+    height: 60px;
+  }
+
+  button {
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    border-radius: 12px;
+    cursor: pointer;
+    border: none;
+    position: absolute;
+    transition: transform 0.1s ease;
+  }
+
+  #yesBtn {
+    background: var(--pink-accent);
+    color: white;
+    left: 0;
+  }
+
+  #noBtn {
+    background: white;
+    color: var(--pink-accent);
+    border: 3px solid var(--pink-accent);
+    right: 0;
+  }
+
+  .flowers {
+    display: none;
+    animation: bounce 0.45s ease-out;
+  }
+
+  @keyframes bounce {
+    0% { transform: scale(0.3); opacity: 0; }
+    60% { transform: scale(1.05); }
+    100% { transform: scale(1); opacity: 1; }
+  }
+</style>
+</head>
+
+<body>
+
+<div id="question" class="container">
+
+<img class="cat" src="blep-cat.jpg" alt="Silly blep cat" />
+
+  <h1>Chloe, will you be my Valentine?</h1>
+  <p class="hint">(There’s only one right answer 😼)</p>
+
+  <div class="buttons">
+    <button id="yesBtn">Yes 💖</button>
+    <button id="noBtn">No 🙃</button>
+  </div>
+</div>
+
+<div id="flowers" class="container flowers">
+  <img class="gift" src="flowers.jpg" alt="Flowers for Chloe" />
+
+  <h1>This is for you, beautiful 🎸🧎‍♂️ 🌺</h1>
+  <p>I knew you'd say yes. Happy Valentine’s Day, Chloe 💖</p>
+</div>
+
+
+<script>
+  const noBtn = document.getElementById('noBtn');
+  const yesBtn = document.getElementById('yesBtn');
+  const question = document.getElementById('question');
+  const flowers = document.getElementById('flowers');
+
+  const MOVE_DISTANCE = 120;
+
+  document.addEventListener('mousemove', (e) => {
+    const rect = noBtn.getBoundingClientRect();
+    const btnX = rect.left + rect.width / 2;
+    const btnY = rect.top + rect.height / 2;
+
+    const dx = btnX - e.clientX;
+    const dy = btnY - e.clientY;
+    const distance = Math.hypot(dx, dy);
+
+    if (distance < 150) {
+      const angle = Math.atan2(dy, dx);
+      const moveX = Math.cos(angle) * MOVE_DISTANCE;
+      const moveY = Math.sin(angle) * MOVE_DISTANCE;
+
+      noBtn.style.transform = `translate(${moveX}px, ${moveY}px)`;
+    }
+  });
+
+  yesBtn.addEventListener('click', () => {
+    question.style.display = 'none';
+    flowers.style.display = 'block';
+  });
+</script>
+
+</body>
+</html>
